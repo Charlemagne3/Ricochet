@@ -16,3 +16,10 @@ The marble collects any spheres of light it comes into contact will.
 Whenever the marble is launched, the turn count increases by 1. 
 There is also a "par" count, which indicates how many turns the level should be completed in.  
 Once all of the spheres of light are collected, the score is recorded and the next level is loaded.
+
+The art assets for the game consist of the following:
+
+A high resolution blue sphere.
+A rectanglular yellow wall 20 units long, 10 units wide, and 1 unit thick.
+A spongey red material that can be placed on the side wall in a repeatable pattern.
+
