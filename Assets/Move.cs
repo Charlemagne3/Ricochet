@@ -1,15 +1,16 @@
 using UnityEngine;
 using System.Collections;
 
-public class Move : MonoBehaviour 
+public class Move : MonoBehaviour
 {
 	float speed;
+	float dist;
 	Vector3 click;
 	
 	// Use this for initialization
 	void Start() 
 	{
-		speed = 1.0F;
+		speed = 0.05F;
 		click = transform.position;
 	}
 	
@@ -18,9 +19,11 @@ public class Move : MonoBehaviour
 	{
 		if(Input.GetMouseButtonDown(0))
 		{
-			click = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-			click = new Vector3(click.x, 1.0F, click.z);
+            Vector3 mouse = Input.mousePosition;
+            mouse.z = 32; 
+			click = Camera.main.ScreenToWorldPoint(mouse);
+			click = new Vector3(click.x, 1.0f, click.z);
 		}
-		transform.position = Vector3.Lerp(transform.position, click, speed);
+        transform.position = Vector3.Lerp(transform.position, click, speed);
 	}
 }
