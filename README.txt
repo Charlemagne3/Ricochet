@@ -38,5 +38,3 @@ The difficulty curve of the game increases via using the simple mechanics in int
 Lower levels will feature nothing more than a single player sphere and a few walls at simple angles such as 0, 30, 45, 60, 90, 120, 135, 150, 180.
 Levels will become more difficult by incrementally introducing further mechanics.
 Power ups, walls at strange angles, and multiple player spheres can be added.
-
-This is a test edit.
