@@ -4,14 +4,13 @@ using System.Collections;
 public class Move : MonoBehaviour
 {
 	float speed;
-	float dist;
-	Vector3 click;
+	Vector3 moveTo;
 	
 	// Use this for initialization
 	void Start() 
 	{
 		speed = 0.05F;
-		click = transform.position;
+		moveTo = transform.position;
 	}
 	
 	// Update is called once per frame
@@ -21,9 +20,17 @@ public class Move : MonoBehaviour
 		{
             Vector3 mouse = Input.mousePosition;
             mouse.z = 32; 
-			click = Camera.main.ScreenToWorldPoint(mouse);
-			click = new Vector3(click.x, 1.0f, click.z);
+			moveTo = Camera.main.ScreenToWorldPoint(mouse);
+			moveTo = new Vector3(moveTo.x, 1.0f, moveTo.z);
 		}
-        transform.position = Vector3.Lerp(transform.position, click, speed);
+        transform.position = Vector3.Lerp(transform.position, moveTo, speed);
 	}
+	
+	void OnCollisionEnter(Collision collision)
+	{
+        if(collision.gameObject.tag.Equals("ExteriorWall"))
+	    {
+          moveTo = transform.position;
+		}
+    }
 }
