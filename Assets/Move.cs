@@ -9,7 +9,7 @@ public class Move : MonoBehaviour
 	// Use this for initialization
 	void Start() 
 	{
-		speed = 0.05F;
+		speed = 0.6F;
 		moveTo = transform.position;
 	}
 	
@@ -23,7 +23,7 @@ public class Move : MonoBehaviour
 			moveTo = Camera.main.ScreenToWorldPoint(mouse);
 			moveTo = new Vector3(moveTo.x, 1.0f, moveTo.z);
 		}
-        transform.position = Vector3.Lerp(transform.position, moveTo, speed);
+        transform.position = Vector3.MoveTowards(transform.position, moveTo, speed);
 	}
 	
 	void OnCollisionEnter(Collision collision)
