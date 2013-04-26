@@ -1,14 +1,16 @@
 using UnityEngine;
 using System.Collections;
 
-public class Move : MonoBehaviour
+public class PlayerSphereScript : MonoBehaviour
 {
+	int collected;
 	float speed;
 	Vector3 moveTo;
 	
 	// Use this for initialization
 	void Start() 
 	{
+		collected = 0;
 		speed = 0.6F;
 		moveTo = transform.position;
 	}
@@ -31,6 +33,15 @@ public class Move : MonoBehaviour
         if(collision.gameObject.tag.Equals("ExteriorWall"))
 	    {
           moveTo = transform.position;
+		}
+		else if(collision.gameObject.tag.Equals("InteriorWall"))
+		{
+			
+		}
+		else if(collision.gameObject.tag.Equals("OrbOfLight"))
+		{
+			collected++;
+			Destroy(collision.gameObject);
 		}
     }
 }
