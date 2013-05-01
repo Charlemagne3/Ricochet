@@ -3,20 +3,22 @@ using System.Collections;
 
 public class LoadLevel : MonoBehaviour 
 {
-	
-	string nextLevel;
+    int currentLevel;
+    GameObject playerSphere;
 	
 	// Use this for initialization
 	void Start() 
 	{
-		nextLevel = "n";
+		currentLevel = 1;
+        playerSphere = GameObject.Find("PlayerSphere");
 	}
 	
 	// Update is called once per frame
 	void Update() 
 	{
-		if(Input.GetKey(nextLevel)){
-			Application.LoadLevel("Level 2");	
+		if(playerSphere.GetComponent<PlayerSphereScript>().Collected() == 1){
+            currentLevel++;
+			Application.LoadLevel("Level " + currentLevel);	
 		}
 	}
 }
