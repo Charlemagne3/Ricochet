@@ -8,18 +8,15 @@ public class PlayerSphereScript : MonoBehaviour
 	float speed;
 	Vector3 moveTo;
     Vector3 previousPosition; // Variable to keep track of the playerSphere's previous position
-    GUIStyle gameStyle;
-	
+
 	// Use this for initialization
 	void Start() 
 	{
 		collected = 0;
 		speed = 0.6F;
+		rigidbody.constraints = RigidbodyConstraints.FreezePositionY; // to stop the y from changing
 		moveTo = transform.position;
         previousPosition = moveTo;
-        gameStyle = new GUIStyle();
-        gameStyle.fontSize = 16;
-        gameStyle.normal.textColor = Color.cyan;
 	}
 	
 	// Update is called once per frame
@@ -46,7 +43,7 @@ public class PlayerSphereScript : MonoBehaviour
 		}
 		else if(collision.gameObject.tag.Equals("InteriorWall"))
 		{
-            moveTo = Vector3.Reflect(transform.position, collision.gameObject.transform.position);
+            moveTo = Vector3.Reflect(previousPosition, collision.gameObject.transform.up);
             moveTo = new Vector3(moveTo.x, 1.0f, moveTo.z); // set y to 1
 		}
 		else if(collision.gameObject.tag.Equals("OrbOfLight"))
@@ -56,13 +53,15 @@ public class PlayerSphereScript : MonoBehaviour
 		}
     }
 
-    void OnGUI()
-    {
-        GUI.Label(new Rect(0, 0, Screen.width, Screen.height), "SCORE: " + collected + "\nMOVES: " + moves, gameStyle);
-    }
-
+    // Used by the HUD to display how many orbs have been collected.
     public int Collected()
     {
         return collected;
     }
+
+	// Used by the HUD to display how many moves have been made.
+	public int Moves()
+	{
+		return moves;	
+	}
 }
