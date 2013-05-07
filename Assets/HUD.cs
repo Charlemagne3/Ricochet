@@ -23,7 +23,7 @@ public class HUD : MonoBehaviour
 		if (playerSphere == null)
 			playerSphere = GameObject.Find("PlayerSphere");
         // Write the player's score, moves, and par to the screen
-        GUI.Label(new Rect(0, 0, Screen.width, Screen.height), "SCORE: " + playerSphere.GetComponent<PlayerSphereScript>().Collected() +
+        GUI.Label(new Rect(0, 0, Screen.width, Screen.height), "SCORE: " + playerSphere.GetComponent<PlayerSphereScript>().Collected +
 			"\nMOVES: " + playerSphere.GetComponent<PlayerSphereScript>().Moves() +
             "\nPAR: " + transform.gameObject.GetComponent<LoadLevel>().Par(), gameStyle);
     }

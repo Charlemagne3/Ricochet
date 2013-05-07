@@ -1,8 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/LoadLevel.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/HUD.cs">
     <Files>
-      <File FileName="Assets/LoadLevel.cs" Line="1" Column="1" />
+      <File FileName="Assets/LoadLevel.cs" Line="40" Column="66" />
+      <File FileName="Assets/PlayerSphereScript.cs" Line="49" Column="9" />
+      <File FileName="Assets/HUD.cs" Line="16" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

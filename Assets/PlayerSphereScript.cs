@@ -3,14 +3,20 @@ using System.Collections;
 
 public class PlayerSphereScript : MonoBehaviour
 {
-	int collected;
-    int moves;
-	float speed;
-	Vector3 moveTo;
-    Vector3 previousPosition; // Variable to keep track of the playerSphere's previous position
-
+	private int collected;
+    private int moves;
+	private float speed;
+	private Vector3 moveTo;
+    private Vector3 previousPosition; // Variable to keep track of the playerSphere's previous position
+	
+	public int Collected 
+	{
+		get { return this.collected; }
+		set { this.collected = value; }
+	}
+	
 	// Use this for initialization
-	void Start() 
+	public void Start() 
 	{
 		collected = 0;
 		speed = 0.6F;
@@ -20,7 +26,7 @@ public class PlayerSphereScript : MonoBehaviour
 	}
 	
 	// Update is called once per frame
-	void Update() 
+	public void Update() 
 	{
         // If the mouse button is down, and the playerSphere has not moved since last update,
         if (Input.GetMouseButtonDown(0) && transform.position == previousPosition)
@@ -40,7 +46,7 @@ public class PlayerSphereScript : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, moveTo, speed);
 	}
 	
-	void OnCollisionEnter(Collision collision)
+	public void OnCollisionEnter(Collision collision)
 	{
         if(collision.gameObject.tag.Equals("ExteriorWall"))
 	    {
@@ -59,12 +65,6 @@ public class PlayerSphereScript : MonoBehaviour
 			collected++;
 			Destroy(collision.gameObject);
 		}
-    }
-
-    // Used by the HUD to display how many orbs have been collected.
-    public int Collected()
-    {
-        return collected;
     }
 
 	// Used by the HUD to display how many moves have been made.

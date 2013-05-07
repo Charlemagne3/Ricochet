@@ -34,9 +34,10 @@ public class LoadLevel : MonoBehaviour
         // increase the par, reset score to 0, increment orbs by 2 and load the next level.
 		// The values for par and the number of orbs are off the top of my head, if our readme
 		// has specific numbers, just adjust these values to reflect those.
-		if (playerSphere.GetComponent<PlayerSphereScript>().Collected() == orbs)
+		if (playerSphere.GetComponent<PlayerSphereScript>().Collected == orbs)
 		{
             currentLevel++;
+			playerSphere.GetComponent<PlayerSphereScript>().Collected = 0;
 			// To allow this method to load a new scene, use File -> Build Settings
 			// to add the scenes you have made to the list of levels.
 			Application.LoadLevel("Level " + currentLevel);
