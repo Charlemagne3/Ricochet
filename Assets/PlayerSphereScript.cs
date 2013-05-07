@@ -25,11 +25,16 @@ public class PlayerSphereScript : MonoBehaviour
         // If the mouse button is down, and the playerSphere has not moved since last update,
         if (Input.GetMouseButtonDown(0) && transform.position == previousPosition)
 		{
-            Vector3 mouse = Input.mousePosition;
-            mouse.z = 32; 
-			moveTo = Camera.main.ScreenToWorldPoint(mouse);
-			moveTo = new Vector3(moveTo.x, 1.0f, moveTo.z);
-            moves++;
+            RaycastHit hit;
+            // Create a ray going towards the mouse's location
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            // If the raycast of the ray collides with something (currently always collides with ground),
+            // move to the collision point's x and z coordinates and increment moves.
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+            {
+                moveTo = new Vector3(hit.point.x, 1.0f, hit.point.z);
+                moves++;
+            }
 		}
         previousPosition = transform.position;
         transform.position = Vector3.MoveTowards(transform.position, moveTo, speed);
@@ -43,7 +48,10 @@ public class PlayerSphereScript : MonoBehaviour
 		}
 		else if(collision.gameObject.tag.Equals("InteriorWall"))
 		{
-            moveTo = Vector3.Reflect(previousPosition, collision.gameObject.transform.up);
+            ContactPoint contact = collision.contacts[0];
+            // Reflect still not working as intended, always reflects in the same direction,
+            // no matter at which angle the ball collided with the wall.
+            moveTo = Vector3.Reflect(transform.position, contact.normal);
             moveTo = new Vector3(moveTo.x, 1.0f, moveTo.z); // set y to 1
 		}
 		else if(collision.gameObject.tag.Equals("OrbOfLight"))
