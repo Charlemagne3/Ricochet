@@ -4,12 +4,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-public class TouchControl 
-{	
+public class TouchControl {	
 	private bool isTouchDevice;
 	
-	public TouchControl (bool isTouchDevice) 
-	{	
+	public TouchControl (bool isTouchDevice) {	
 		this.isTouchDevice = isTouchDevice;
 	}
 	
@@ -32,5 +30,9 @@ public class TouchControl
 			vec3 = Camera.main.ScreenToWorldPoint(new Vector3 (touch.x, touch.y, 100));
 		} 
 		return vec3;
+	}
+
+	public bool GetLaucnh() {
+		return Input.GetMouseButton(1);
 	}
 }
