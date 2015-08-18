@@ -13,7 +13,9 @@ public class PlayerControl {
 	}
 
 	public void move(Vector3 position) {
-		this.sphere.GetComponent<Rigidbody>().AddRelativeForce(Vector3.ClampMagnitude((position - this.sphere.transform.position) * 1000000, 200));
+		if (this.sphere.GetComponent<Rigidbody>().velocity == Vector3.zero) {
+			this.sphere.GetComponent<Rigidbody>().AddRelativeForce(Vector3.ClampMagnitude((position - this.sphere.transform.position) * 1000000, 1000));
+		}
 	}
 
 	public void AddPoint() {
