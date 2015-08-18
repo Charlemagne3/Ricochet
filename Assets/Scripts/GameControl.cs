@@ -4,6 +4,7 @@ using System.Collections;
 public class GameControl : MonoBehaviour {
 
 	private GameObject target;
+	private UIControl UIControl;
 	private TouchControl touchControl;
 	private PlayerControl playerControl;
 	private int score;
@@ -24,6 +25,7 @@ public class GameControl : MonoBehaviour {
 		this.touchControl = new TouchControl(isTouchDevice);
 		this.playerControl = new PlayerControl(this);
 		this.target = GameObject.FindGameObjectWithTag("Target");
+		this.UIControl = this.GetComponent<UIControl>();
 	}
 	
 	// Update is called once per frame
@@ -41,6 +43,7 @@ public class GameControl : MonoBehaviour {
 
 	public void AddPoint() {
 		this.tempScore++;
+		this.UIControl.Orbs.text = this.tempScore.ToString();
 	}
 
 	public void CommitPoints() {

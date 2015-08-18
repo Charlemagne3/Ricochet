@@ -17,7 +17,8 @@ public class PlayerSphere : MonoBehaviour {
 
 	void OnTriggerEnter(Collider collider) {
 		if (collider.tag == "Orb") {
-			Destroy(collider.gameObject);		
+			Destroy(collider.gameObject);
+			this.control.AddPoint();
 		}
 	}
 }
